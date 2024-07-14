@@ -1,0 +1,4 @@
+nav - #19232f
+primary - #ff9a0d
+
+gradient #4a5461 to #1d2733
