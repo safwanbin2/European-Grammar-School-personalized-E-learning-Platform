@@ -12,7 +12,6 @@ import config from "../../config";
 const DashboardLayout = () => {
   const { logOut, userDB } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [consent, setConsent] = useState(false);
   const navigate = useNavigate();
 
   const handleToggle = () => {
@@ -35,37 +34,8 @@ const DashboardLayout = () => {
     }
   };
 
-  const handlePrivacy = (e) => {
-    console.log(e.target.checked);
-    fetch(
-      `${config.base_url}/users/hide?email=${userDB?.email}&isHide=${e?.target?.checked}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.success) {
-          return toast.success(data?.message);
-        }
-      })
-      .catch((err) => {
-        toast.error("Something went wrong");
-      });
-  };
-
   const sideLinks = (
     <>
-      <li>
-        <form>
-          <label className="flex items-center p-2 rounded-lg cursor-pointer label justify-start gap-2">
-            <input
-              onChange={handlePrivacy}
-              type="checkbox"
-              className="checkbox checkbox-success h-5 w-5"
-              defaultChecked={userDB?.isHidden}
-            />
-            <span className="ml-2">Hide Feedbacks</span>
-          </label>
-        </form>
-      </li>
       <li>
         <NavLink
           to="/"
@@ -94,30 +64,30 @@ const DashboardLayout = () => {
       </li>
       <li>
         <NavLink
-          to="/dashboard/my-rating"
+          to="/dashboard/classes"
           className={({ isActive, isPending }) =>
             `flex items-center p-2 rounded-lg  border-b-2 border-transparent hover:bg-base-200 ${
               isActive ? "bg-primary text-white" : ""
             }`
           }
         >
-          <FaStar className="flex-shrink-0 w-6 h-6  transition duration-75 group-hover:text-gray-900" />
-          <span className="flex-1 ml-3 whitespace-nowrap">My ratings</span>
+          <CgProfile className="flex-shrink-0 w-6 h-6  transition duration-75 group-hover:text-gray-900" />
+          <span className="flex-1 ml-3 whitespace-nowrap">Classes</span>
         </NavLink>
       </li>
-      {/* <li>
+      <li>
         <NavLink
-          to="/dashboard/my-interaction"
+          to="/dashboard/add-new-class"
           className={({ isActive, isPending }) =>
             `flex items-center p-2 rounded-lg  border-b-2 border-transparent hover:bg-base-200 ${
               isActive ? "bg-primary text-white" : ""
             }`
           }
         >
-          <FaStarHalfAlt className="flex-shrink-0 w-6 h-6  transition duration-75 group-hover:text-gray-900" />
-          <span className="flex-1 ml-3 whitespace-nowrap">My interactions</span>
+          <CgProfile className="flex-shrink-0 w-6 h-6  transition duration-75 group-hover:text-gray-900" />
+          <span className="flex-1 ml-3 whitespace-nowrap">Add Class</span>
         </NavLink>
-      </li> */}
+      </li>
 
       {/* signing out */}
       <li>
@@ -140,7 +110,7 @@ const DashboardLayout = () => {
               className="text-primary text-xl md:text-2xl uppercase font-bold"
               to="/"
             >
-              <h2 className="text-primary">Rating</h2>
+              <h2 className="text-primary">EGSPEP</h2>
               {/* <img className='h-[32px]' src={m} alt="" /> */}
             </Link>
             <div className="flex md:hidden items-center justify-start">

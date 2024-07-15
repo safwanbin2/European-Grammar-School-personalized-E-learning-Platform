@@ -1,4 +1,28 @@
-nav - #19232f
-primary - #ff9a0d
-
-gradient #4a5461 to #1d2733
+Functional Requirements
+1. User Authentication and Access Control:
+- Allow users (students and teachers) to log in securely
+- Restrict student access to only their current year and selected subjects
+- Provide teachers with access to their assigned classes and subjects
+2. Module/Page Management:
+- Create separate pages or modules for each subject in each year (Year 7 to Year 11)
+- Ensure proper organization and navigation between different subjects and years
+3. Assessment Module:
+- Allow teachers to create and assign homework or assessments
+- Enable students to submit their completed homework or assessments
+- Provide a system for teachers to mark and grade submitted work
+4. Learning Material Management:
+- Allow teachers to upload teaching and learning materials
+- Make uploaded materials accessible to enrolled students of the specific subject and year
+5. Attendance Tracking:
+- Implement an attendance tracking system within the platform
+- Allow teachers to mark attendance for each class at the end of the session
+- Store and display attendance records
+6. User Interface:
+- Design an intuitive interface for both students and teachers
+- Ensure easy navigation between different modules and features
+7. Data Management:
+- Store and manage user data, including student enrollments, teacher assignments, and class
+information
+- Maintain records of assessments, learning materials, and attendance
+8. Reporting:
+- Generate reports on student performance, attendance, and other relevant metrics

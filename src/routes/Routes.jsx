@@ -6,6 +6,12 @@ import Register from "../pages/login/register/Register";
 import MyProfile from "../pages/profile/MyProfile";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
+import DashboardHome from "../pages/dashboard/home/DashboardHome";
+import Classes from "../pages/dashboard/classes/Classes";
+import AddClass from "../pages/dashboard/addClass/AddClass";
+import SingleClass from "../pages/dashboard/singleClass/SingleClass";
+import SingleSubject from "../pages/dashboard/singleClass/subjects/SingleSubject/SingleSubject";
+import AddSubject from "../pages/dashboard/addSubject/AddSubject";
 
 export const router = createBrowserRouter([
   {
@@ -36,11 +42,32 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <MyProfile />,
+        element: <DashboardHome />,
       },
       {
         path: "/dashboard/my-profile",
         element: <MyProfile />,
+      },
+
+      {
+        path: "/dashboard/add-new-class",
+        element: <AddClass />,
+      },
+      {
+        path: "/dashboard/classes/:classId/add-new-subject",
+        element: <AddSubject />,
+      },
+      {
+        path: "/dashboard/classes",
+        element: <Classes />,
+      },
+      {
+        path: "/dashboard/classes/:classId",
+        element: <SingleClass />,
+      },
+      {
+        path: "/dashboard/classes/:classId/subject/:subjectId",
+        element: <SingleSubject />,
       },
     ],
   },

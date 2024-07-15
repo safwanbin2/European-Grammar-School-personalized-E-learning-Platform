@@ -143,7 +143,7 @@ const Login = () => {
                 Login
               </button>
             </div>
-            <div className="divider">Or with</div>
+            {/* <div className="divider">Or with</div>
             <div className="grid grid-cols-1 justify-center items-center mt-4 gap-4">
               <button
                 onClick={() => handleLogInWithGoogle()}
@@ -152,7 +152,7 @@ const Login = () => {
                 <FcGoogle className="text-2xl" />
                 <p>oogle</p>
               </button>
-            </div>
+            </div> */}
           </div>
         </form>
       </div>
