@@ -12,6 +12,10 @@ import AddClass from "../pages/dashboard/addClass/AddClass";
 import SingleClass from "../pages/dashboard/singleClass/SingleClass";
 import SingleSubject from "../pages/dashboard/singleClass/subjects/SingleSubject/SingleSubject";
 import AddSubject from "../pages/dashboard/addSubject/AddSubject";
+import InviteTeacher from "../pages/dashboard/singleClass/subjects/SingleSubject/inviteTeacher/InviteTeacher";
+import InviteStudent from "../pages/dashboard/singleClass/subjects/SingleSubject/inviteStudent/InviteStudent";
+import ClassWork from "../pages/dashboard/singleClass/subjects/SingleSubject/classWork/ClassWork";
+import SubmitClassWork from "../pages/dashboard/singleClass/subjects/SingleSubject/classWork/submitClassWork/SubmitClassWork";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +72,22 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/classes/:classId/subject/:subjectId",
         element: <SingleSubject />,
+      },
+      {
+        path: "/dashboard/classes/:classId/subject/:subjectId/invite-teacher",
+        element: <InviteTeacher />,
+      },
+      {
+        path: "/dashboard/classes/:classId/subject/:subjectId/invite-student",
+        element: <InviteStudent />,
+      },
+      {
+        path: "/dashboard/classes/:classId/subject/:subjectId/class-work",
+        element: <ClassWork />,
+      },
+      {
+        path: "/dashboard/classes/:classId/subject/:subjectId/submit-class-work",
+        element: <SubmitClassWork />,
       },
     ],
   },

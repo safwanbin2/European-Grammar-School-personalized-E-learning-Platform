@@ -38,11 +38,9 @@ const DashboardLayout = () => {
     <>
       <li>
         <NavLink
-          to="/"
+          to="/dashboard"
           className={({ isActive, isPending }) =>
-            `flex items-center p-2 rounded-lg  border-b-2 border-transparent hover:bg-base-200 ${
-              isActive ? "bg-primary text-white" : ""
-            }`
+            `flex items-center p-2 rounded-lg  border-b-2 border-transparent hover:bg-base-200`
           }
         >
           <FaHome className="flex-shrink-0 w-6 h-6  transition duration-75 group-hover:text-gray-900" />

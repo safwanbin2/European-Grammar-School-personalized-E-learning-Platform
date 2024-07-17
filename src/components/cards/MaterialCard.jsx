@@ -1,5 +1,5 @@
 import { IoPerson } from "react-icons/io5";
-import { FaRegFilePdf } from "react-icons/fa6";
+import { FaCloudDownloadAlt } from "react-icons/fa";
 
 const MaterialCard = ({ material }) => {
   const {
@@ -27,8 +27,11 @@ const MaterialCard = ({ material }) => {
       {materialText ? <p className="text-sm">{materialText}</p> : ""}
       {materialFile ? (
         <div>
-          <a href={materialFile}>
-            <FaRegFilePdf className="text-2xl" />
+          <a
+            href={materialFile}
+            className="flex items-center gap-1 text-gray-500"
+          >
+            <FaCloudDownloadAlt className="text-2xl" />
             <p className="text-xs">attachment</p>
           </a>
         </div>
