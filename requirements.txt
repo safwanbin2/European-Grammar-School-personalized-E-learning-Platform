@@ -30,3 +30,4 @@ information
 #testing
 #!task safwan-do the routing and do the forms frontend
 #!task2 safwan-do the routing and do the forms frontend + dashbaord
+#!7/17/2024 - done frontend untill attendence
