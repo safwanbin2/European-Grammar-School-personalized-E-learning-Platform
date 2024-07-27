@@ -112,7 +112,7 @@ const Register = () => {
   return (
     <div className="w-full min-h-screen pt-6 flex justify-center items-center">
       <div className="w-11/12 md:w-5/12 mx-auto p-4 md:p-8 border  rounded-lg shadow-lg my-20">
-        <h2 className="text-xl font-medium text-gray-200 mb-2">
+        <h2 className="text-xl font-medium text-gray-500 mb-2">
           Create your Account!
         </h2>
         <p className="text-sm">

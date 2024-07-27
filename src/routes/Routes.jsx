@@ -16,6 +16,10 @@ import InviteTeacher from "../pages/dashboard/singleClass/subjects/SingleSubject
 import InviteStudent from "../pages/dashboard/singleClass/subjects/SingleSubject/inviteStudent/InviteStudent";
 import ClassWork from "../pages/dashboard/singleClass/subjects/SingleSubject/classWork/ClassWork";
 import SubmitClassWork from "../pages/dashboard/singleClass/subjects/SingleSubject/classWork/submitClassWork/SubmitClassWork";
+import ViewSubmission from "../pages/dashboard/singleClass/subjects/SingleSubject/classWork/viewSubmission/ViewSubmission";
+import AcceptInvite from "../pages/invite/AcceptInvite";
+import Attendence from "../pages/dashboard/attendence/Attendence";
+import AttendenceHistory from "../pages/dashboard/attendence/AttendenceHistory";
 
 export const router = createBrowserRouter([
   {
@@ -89,6 +93,18 @@ export const router = createBrowserRouter([
         path: "/dashboard/classes/:classId/subject/:subjectId/submit-class-work",
         element: <SubmitClassWork />,
       },
+      {
+        path: "/dashboard/classes/:classId/subject/:subjectId/view-submission",
+        element: <ViewSubmission />,
+      },
+      {
+        path: "/dashboard/classes/:classId/subject/:subjectId/attendence",
+        element: <Attendence />,
+      },
+      {
+        path: "/dashboard/classes/:classId/subject/:subjectId/attendence-history",
+        element: <AttendenceHistory />,
+      },
     ],
   },
   {
@@ -98,5 +114,9 @@ export const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/accept-invitation/:classId/:subjectId/:email/:role",
+    element: <AcceptInvite />,
   },
 ]);

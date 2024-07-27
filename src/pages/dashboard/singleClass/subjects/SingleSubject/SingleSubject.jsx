@@ -22,9 +22,12 @@ const SingleSubject = () => {
           >
             Invite Teacher
           </Link>
-          <button className="btn btn-sm btn-success text-white">
+          <Link
+            to={`/dashboard/classes/${classId}/subject/${subjectId}/attendence`}
+            className="btn btn-sm btn-success text-white"
+          >
             Attendence
-          </button>
+          </Link>
           <Link
             to={`/dashboard/classes/${classId}/subject/${subjectId}/class-work`}
             className="btn btn-sm btn-success text-white"

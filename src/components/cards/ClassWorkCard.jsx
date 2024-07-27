@@ -39,14 +39,22 @@ const ClassWorkCard = ({ classWork }) => {
           ""
         )}
       </div>
-      <div className="flex flex-col gap-1">
-        <label className="text-xs">*submit before {submissionDate}</label>
-        <Link
-          to={`/dashboard/classes/${classId}/subject/${subjectId}/submit-class-work`}
-          className="btn btn-success btn-sm text-white"
-        >
-          Submit Answer
-        </Link>
+      <div>
+        <div className="flex flex-col gap-1">
+          <label className="text-xs">*submit before {submissionDate}</label>
+          <Link
+            to={`/dashboard/classes/${classId}/subject/${subjectId}/submit-class-work`}
+            className="btn btn-success btn-sm text-white"
+          >
+            Submit Answer
+          </Link>
+          <Link
+            to={`/dashboard/classes/${classId}/subject/${subjectId}/view-submission`}
+            className="btn btn-info btn-sm text-white"
+          >
+            View Submission
+          </Link>
+        </div>
       </div>
     </div>
   );
