@@ -1,7 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 
 const AddSubject = () => {
+  const { classId } = useParams();
   const {
     register,
     handleSubmit,
@@ -9,6 +11,8 @@ const AddSubject = () => {
   } = useForm();
 
   const handleAddProduct = (data) => {
+    data.classId = classId;
+    data.classTitle = "Coming title";
     console.log(data);
   };
 
@@ -22,7 +26,7 @@ const AddSubject = () => {
               <span className="">Subject Title</span>
             </label>
             <input
-              {...register("title", {
+              {...register("subjectTitle", {
                 required: "Provide a title",
               })}
               type="text"

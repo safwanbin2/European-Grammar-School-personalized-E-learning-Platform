@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { AuthContext } from "../../../../contexts/AuthContext/AuthProvider";
+import config from "../../../../config";
+import { toast } from "sonner";
 
 const Subjects = () => {
   const { classId } = useParams();
+  const { userDB } = useContext(AuthContext);
   const [subjects, setSubjects] = useState([
     {
       _id: 1,
@@ -11,28 +15,31 @@ const Subjects = () => {
       classTitle: "Class 7",
       description: "sdsdsjds sdusg dsuidg sugd sgdsiuydg sidug s sdigsd gsuidg",
     },
-    {
-      _id: 2,
-      classId: "c1",
-      title: "Math",
-      classTitle: "Class 7",
-      description: "sdsdsjds sdusg dsuidg sugd sgdsiuydg sidug s sdigsd gsuidg",
-    },
-    {
-      _id: 3,
-      classId: "c1",
-      title: "Biology",
-      classTitle: "Class 7",
-      description: "sdsdsjds sdusg dsuidg sugd sgdsiuydg sidug s sdigsd gsuidg",
-    },
-    {
-      _id: 4,
-      classId: "c1",
-      title: "Social Science",
-      classTitle: "Class 7",
-      description: "sdsdsjds sdusg dsuidg sugd sgdsiuydg sidug s sdigsd gsuidg",
-    },
   ]);
+
+  useEffect(() => {
+    if (userDB?.role === "admin") {
+      fetch(`${config.base_url}/class/${classId}/subjects`)
+        .then((res) => res.json())
+        .then((data) => {
+          setSubjects(data?.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err?.message || "Something went   wrong");
+        });
+    } else {
+      fetch(`${config.base_url}/class/${classId}/my-subject/${userDB?.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setSubjects(data?.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err?.message || "Something went   wrong");
+        });
+    }
+  }, [userDB, userDB?.role, userDB?.email, classId]);
   return (
     <div>
       <h2 className="text-base font-semibold mb-2">Subjects:</h2>
@@ -52,7 +59,7 @@ const Subjects = () => {
               ? subjects?.map((sub, i) => (
                   <tr key={i} sub={sub}>
                     <th>{i + 1}</th>
-                    <td>{sub.title}</td>
+                    <td>{sub.subjectTitle}</td>
                     <td>
                       {sub?.description?.length > 30
                         ? sub?.description?.slice(0, 30) + "..."

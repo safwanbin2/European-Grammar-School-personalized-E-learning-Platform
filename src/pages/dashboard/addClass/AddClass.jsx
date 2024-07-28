@@ -1,5 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import config from "../../../config";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
   const {
@@ -7,9 +10,30 @@ const AddClass = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
   const handleAddProduct = (data) => {
-    console.log(data);
+    fetch(`${config.base_url}/class/create`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.success) {
+          toast.success(data?.message);
+          navigate("/dashboard/classes");
+        } else {
+          toast.error(data?.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err?.message);
+      });
   };
 
   return (
@@ -22,16 +46,16 @@ const AddClass = () => {
               <span className="">Title</span>
             </label>
             <input
-              {...register("title", {
+              {...register("classTitle", {
                 required: "Provide a title",
               })}
               type="text"
               placeholder="title"
               className="shadow bg-white focus:outline-none rounded p-2  w-full border"
             />
-            {errors.title && (
+            {errors.classTitle && (
               <label className="label text-red-400 text-xs ps-0">
-                <span className="">{errors.title.message}</span>
+                <span className="">{errors.classTitle.message}</span>
               </label>
             )}
           </div>

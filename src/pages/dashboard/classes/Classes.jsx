@@ -1,34 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthContext/AuthProvider";
+import config from "../../../config";
+import { toast } from "sonner";
 
 const Classes = () => {
-  const [classes, setClasses] = useState([
-    {
-      _id: 1,
-      classId: "c1",
-      title: "Class 7",
-    },
-    {
-      _id: 2,
-      classId: "c2",
-      title: "Class 8",
-    },
-    {
-      _id: 3,
-      classId: "c3",
-      title: "Class 9",
-    },
-    {
-      _id: 4,
-      classId: "c4",
-      title: "Class 10",
-    },
-    {
-      _id: 5,
-      classId: "c5",
-      title: "Class 11",
-    },
-  ]);
+  const { userDB } = useContext(AuthContext);
+  const [classes, setClasses] = useState([]);
+  useEffect(() => {
+    if (userDB?.role === "admin") {
+      fetch(`${config.base_url}/class/all`)
+        .then((res) => res.json())
+        .then((data) => {
+          setClasses(data?.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err?.message || "Something went   wrong");
+        });
+    } else {
+      fetch(`${config.base_url}/class/my-class/${userDB?.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setClasses(data?.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err?.message || "Something went   wrong");
+        });
+    }
+  }, [userDB, userDB?.role, userDB?.email]);
 
   return (
     <div>
@@ -48,7 +49,7 @@ const Classes = () => {
               ? classes?.map((cls, i) => (
                   <tr key={i} cls={cls}>
                     <th>{i + 1}</th>
-                    <td>{cls.title}</td>
+                    <td>{cls.classTitle}</td>
                     <td>
                       <Link
                         to={`/dashboard/classes/${cls?._id}`}

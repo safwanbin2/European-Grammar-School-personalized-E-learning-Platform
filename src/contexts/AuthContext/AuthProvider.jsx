@@ -74,7 +74,8 @@ const AuthProvider = ({ children }) => {
       fetch(`${config.base_url}/users/single/${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
-          setUserDB(data.data);
+          console.log(data);
+          setUserDB(data?.data);
           setIsLoading(false);
         });
     }
