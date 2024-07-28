@@ -12,6 +12,13 @@ const ClassWorkCard = ({ classWork }) => {
     instructionText,
     instructionFile,
   } = classWork ?? {};
+  let pd = new Date(date);
+  let sd = new Date(submissionDate);
+
+  let postDate =
+    pd.getDate() + "/" + (pd.getMonth() + 1) + "/" + pd.getFullYear();
+  let subDate =
+    sd.getDate() + "/" + (sd.getMonth() + 1) + "/" + sd.getFullYear();
   return (
     <div className="w-full border-2 p-5 rounded flex justify-between">
       <div className="space-y-5">
@@ -21,7 +28,7 @@ const ClassWorkCard = ({ classWork }) => {
           </div>
           <div>
             <p className="text-sm">{teacherEmail}</p>
-            <p className="text-xs text-gray-500">{date}</p>
+            <p className="text-xs text-gray-500">{postDate}</p>
           </div>
         </div>
         {instructionText ? <p className="text-sm">{instructionText}</p> : ""}
@@ -41,7 +48,7 @@ const ClassWorkCard = ({ classWork }) => {
       </div>
       <div>
         <div className="flex flex-col gap-1">
-          <label className="text-xs">*submit before {submissionDate}</label>
+          <label className="text-xs">*submit before {subDate}</label>
           <Link
             to={`/dashboard/classes/${classId}/subject/${subjectId}/submit-class-work`}
             className="btn btn-success btn-sm text-white"

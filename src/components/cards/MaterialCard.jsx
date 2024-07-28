@@ -13,6 +13,10 @@ const MaterialCard = ({ material }) => {
     teacherEmail,
     date,
   } = material ?? {};
+
+  let d = new Date(date);
+  let postDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+
   return (
     <div className="w-full border-2 p-5 rounded space-y-5">
       <div className="flex gap-2">
@@ -21,13 +25,14 @@ const MaterialCard = ({ material }) => {
         </div>
         <div>
           <p className="text-sm">{teacherEmail}</p>
-          <p className="text-xs text-gray-500">{date}</p>
+          <p className="text-xs text-gray-500">{postDate}</p>
         </div>
       </div>
       {materialText ? <p className="text-sm">{materialText}</p> : ""}
       {materialFile ? (
         <div>
           <a
+            download={materialFile}
             href={materialFile}
             className="flex items-center gap-1 text-gray-500"
           >

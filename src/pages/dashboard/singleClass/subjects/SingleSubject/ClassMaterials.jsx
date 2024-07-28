@@ -1,45 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MaterialCard from "../../../../../components/cards/MaterialCard";
+import { useParams } from "react-router-dom";
+import { toast } from "sonner";
+import config from "../../../../../config";
 
-const ClassMaterials = () => {
-  const [materials, setMaterials] = useState([
-    {
-      _id: 1,
-      classId: "c1",
-      subjectId: "s1",
-      classTitle: "class 7",
-      subjectTitle: "Maths",
-      materialText:
-        "sd shiosd ohsd oushd iohds soiioh oih oih ioh iohio ho h ihsodh  sd",
-      materialFile: "www.file.com",
-      teacherEmail: "www.teacher@gmail.com",
-      date: "2323-23-23",
-    },
-    {
-      _id: 2,
-      classId: "c1",
-      subjectId: "s1",
-      classTitle: "class 7",
-      subjectTitle: "Maths",
-      materialText:
-        "sd shiosd ohsd oushd iohds soiioh oih oih ioh iohio ho h ihsodh  sd",
-      materialFile: "www.file.com",
-      teacherEmail: "www.teacher@gmail.com",
-      date: "2323-23-23",
-    },
-    {
-      _id: 3,
-      classId: "c1",
-      subjectId: "s1",
-      classTitle: "class 7",
-      subjectTitle: "Maths",
-      materialText:
-        "sd shiosd ohsd oushd iohds soiioh oih oih ioh iohio ho h ihsodh  sd",
-      materialFile: "www.file.com",
-      teacherEmail: "www.teacher@gmail.com",
-      date: "2323-23-23",
-    },
-  ]);
+const ClassMaterials = ({ refetch }) => {
+  const { classId, subjectId } = useParams();
+  const [materials, setMaterials] = useState([]);
+
+  useEffect(() => {
+    fetch(`${config.base_url}/subject/${subjectId}/material/all`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log({ data });
+        setMaterials(data?.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error(err.message || "Something went wrong");
+      });
+  }, [subjectId, refetch]);
+
   return (
     <div className="space-y-5">
       <h2 className="mt-10 text-base font-semibold">Class Materials: </h2>

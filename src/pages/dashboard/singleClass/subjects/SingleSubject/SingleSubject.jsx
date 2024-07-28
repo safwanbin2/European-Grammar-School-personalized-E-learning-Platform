@@ -8,6 +8,7 @@ import { toast } from "sonner";
 const SingleSubject = () => {
   const { classId, subjectId } = useParams();
   const [subject, setSubject] = useState({});
+  const [refetch, setRefetch] = useState(false);
   useEffect(() => {
     fetch(`${config.base_url}/subject/single/${subjectId}`)
       .then((res) => res.json())
@@ -57,8 +58,12 @@ const SingleSubject = () => {
           </Link>
         </div>
       </div>
-      <MakeAnnouncement subject={subject} />
-      <ClassMaterials />
+      <MakeAnnouncement
+        refetch={refetch}
+        setRefetch={setRefetch}
+        subject={subject}
+      />
+      <ClassMaterials refetch={refetch} setRefetch={setRefetch} />
     </div>
   );
 };

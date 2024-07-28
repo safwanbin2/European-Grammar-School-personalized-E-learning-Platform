@@ -5,7 +5,7 @@ import { AuthContext } from "../../../../../contexts/AuthContext/AuthProvider";
 import { toast } from "sonner";
 import config from "../../../../../config";
 
-const MakeAnnouncement = ({ subject }) => {
+const MakeAnnouncement = ({ subject, setRefetch }) => {
   const { user } = useContext(AuthContext);
   const { classId, subjectId } = useParams();
   const [materialFile, setMaterialFile] = useState("");
@@ -17,21 +17,40 @@ const MakeAnnouncement = ({ subject }) => {
   } = useForm();
 
   const handleAddMaterial = (data) => {
+    setLoading(true);
     data.classId = classId;
     data.subjectId = subjectId;
     data.classTitle = subject?.classTitle;
     data.subjectTitle = subject?.subjectTitle;
     data.materialFile = materialFile;
     data.teacherEmail = user?.email;
-    console.log(data);
+
+    fetch(`${config.base_url}/material/create`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success(data?.message);
+        setRefetch((prev) => !prev);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error(err.message || "Something went wrong");
+        setLoading(false);
+      });
   };
 
   const handleFileUpload = (e) => {
     setLoading(true);
     // upload the file to db and set the materialFile
-    const file = e.target.value;
+    const file = e.target.files[0];
     const formData = new FormData();
     formData.append("file", file);
+
     fetch(`${config.base_url}/upload-file`, {
       method: "POST",
       // headers: { "content-type": "application/json" },
