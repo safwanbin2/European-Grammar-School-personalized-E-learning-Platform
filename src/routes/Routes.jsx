@@ -90,11 +90,11 @@ export const router = createBrowserRouter([
         element: <ClassWork />,
       },
       {
-        path: "/dashboard/classes/:classId/subject/:subjectId/submit-class-work",
+        path: "/dashboard/classes/:classId/subject/:subjectId/class-work/:classWorkId/submit",
         element: <SubmitClassWork />,
       },
       {
-        path: "/dashboard/classes/:classId/subject/:subjectId/view-submission",
+        path: "/dashboard/classes/:classId/subject/:subjectId/class-work/:classWorkId/view-submission",
         element: <ViewSubmission />,
       },
       {

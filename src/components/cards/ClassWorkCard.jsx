@@ -50,13 +50,13 @@ const ClassWorkCard = ({ classWork }) => {
         <div className="flex flex-col gap-1">
           <label className="text-xs">*submit before {subDate}</label>
           <Link
-            to={`/dashboard/classes/${classId}/subject/${subjectId}/submit-class-work`}
+            to={`/dashboard/classes/${classId}/subject/${subjectId}/class-work/${classWork?._id}/submit`}
             className="btn btn-success btn-sm text-white"
           >
             Submit Answer
           </Link>
           <Link
-            to={`/dashboard/classes/${classId}/subject/${subjectId}/view-submission`}
+            to={`/dashboard/classes/${classId}/subject/${subjectId}/class-work/${classWork?._id}/view-submission`}
             className="btn btn-info btn-sm text-white"
           >
             View Submission
