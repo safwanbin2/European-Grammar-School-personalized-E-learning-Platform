@@ -1,54 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SubmissionCard from "../../../../../../../components/cards/SubmissionCard";
+import { useParams } from "react-router-dom";
+import config from "../../../../../../../config";
+import { toast } from "sonner";
 
 const ViewSubmission = () => {
-  const [submissions, setSubmissions] = useState([
-    {
-      _id: 1,
-      classId: "c1",
-      subjectId: "s1",
-      classWorkId: "cs1",
-      studentId: "st1",
-      studentEmail: "www.student@gmail.com",
-      submissionText: "dsdsd sds ds dsd sds dsds ds dsd sds ds d",
-      submissionFile: "www.facebook.com",
-      classTitle: "class 7",
-      subjectTitle: "Maths",
-      teacherEmail: "www.teacher@gmail.com",
-      date: "2323-23-23",
-      submissionDate: "2323-23-23",
-    },
-    {
-      _id: 2,
-      classId: "c1",
-      subjectId: "s1",
-      classWorkId: "cs1",
-      studentId: "st1",
-      studentEmail: "www.student@gmail.com",
-      submissionText: "dsdsd sds ds dsd sds dsds ds dsd sds ds d",
-      submissionFile: "www.facebook.com",
-      classTitle: "class 7",
-      subjectTitle: "Maths",
-      teacherEmail: "www.teacher@gmail.com",
-      date: "2323-23-23",
-      submissionDate: "2323-23-23",
-    },
-    {
-      _id: 3,
-      classId: "c1",
-      subjectId: "s1",
-      classWorkId: "cs1",
-      studentId: "st1",
-      studentEmail: "www.student@gmail.com",
-      submissionText: "dsdsd sds ds dsd sds dsds ds dsd sds ds d",
-      submissionFile: "www.facebook.com",
-      classTitle: "class 7",
-      subjectTitle: "Maths",
-      teacherEmail: "www.teacher@gmail.com",
-      date: "2323-23-23",
-      submissionDate: "2323-23-23",
-    },
-  ]);
+  const { classId, subjectId, classWorkId } = useParams();
+  const [submissions, setSubmissions] = useState([]);
+
+  useEffect(() => {
+    fetch(`${config.base_url}/class-work/${classWorkId}/submissions/all`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setSubmissions(data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err?.message || "Something went wrong");
+      });
+  }, [classWorkId]);
+
   return (
     <div className="space-y-5">
       <div>

@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
+import config from "../../config";
+import { toast } from "sonner";
 
 const SubmissionCard = ({ submission }) => {
   const {
@@ -17,7 +19,12 @@ const SubmissionCard = ({ submission }) => {
     teacherEmail,
     date,
     submissionDate,
+    mark,
   } = submission ?? {};
+
+  let d = new Date();
+  let submittedDate =
+    d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
 
   const {
     register,
@@ -25,8 +32,23 @@ const SubmissionCard = ({ submission }) => {
     formState: { errors },
   } = useForm();
 
-  const handleAddProduct = (data) => {
-    console.log(data);
+  const handleMark = (data) => {
+    fetch(`${config.base_url}/submission/${_id}/mark?totalMark=${data?.mark}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({}),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success(data?.message);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err?.message || "Something went wrong");
+      });
   };
 
   return (
@@ -38,7 +60,7 @@ const SubmissionCard = ({ submission }) => {
           </div>
           <div>
             <p className="text-sm">{studentEmail}</p>
-            <p className="text-xs text-gray-500">{date}</p>
+            <p className="text-xs text-gray-500">{submittedDate}</p>
           </div>
         </div>
         {submissionText ? <p className="text-sm">{submissionText}</p> : ""}
@@ -58,21 +80,22 @@ const SubmissionCard = ({ submission }) => {
       </div>
       <div>
         <form
-          onSubmit={handleSubmit(handleAddProduct)}
+          onSubmit={handleSubmit(handleMark)}
           className="grid grid-cols-2 gap-2 w-[150px]"
         >
           <div className="form-control">
             <input
-              {...register("title", {
+              {...register("mark", {
                 required: "give mark",
               })}
               type="number"
               placeholder="Assign mark"
               className="shadow bg-white focus:outline-none rounded p-2  w-full border"
+              defaultValue={mark}
             />
-            {errors.title && (
+            {errors.mark && (
               <label className="label text-red-400 text-xs ps-0">
-                <span className="">{errors.title.message}</span>
+                <span className="">{errors.mark.message}</span>
               </label>
             )}
           </div>
