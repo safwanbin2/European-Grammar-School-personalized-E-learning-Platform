@@ -1,48 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
+import config from "../../../config";
+import { toast } from "sonner";
+import { AuthContext } from "../../../contexts/AuthContext/AuthProvider";
 
-const TakeAttendence = () => {
+const TakeAttendence = ({ subject }) => {
+  const { user } = useContext(AuthContext);
   const { classId, subjectId } = useParams();
-
-  const [students, setStudents] = useState([
-    {
-      _id: "1",
-      studentId: "s1",
-      classId: "c1",
-      subjectId: "s1",
-      classTitle: "dssd",
-      subjectTitle: "dsds",
-      studentEmail: "student@gmail.com",
-    },
-    {
-      _id: "2",
-      studentId: "s1",
-      classId: "c1",
-      subjectId: "s1",
-      classTitle: "dssd",
-      subjectTitle: "dsds",
-      studentEmail: "student@gmail.com",
-    },
-    {
-      _id: "3",
-      studentId: "s1",
-      classId: "c1",
-      subjectId: "s1",
-      classTitle: "dssd",
-      subjectTitle: "dsds",
-      studentEmail: "student@gmail.com",
-    },
-    {
-      _id: "4",
-      studentId: "s1",
-      classId: "c1",
-      subjectId: "s1",
-      classTitle: "dssd",
-      subjectTitle: "dsds",
-      studentEmail: "student@gmail.com",
-    },
-  ]);
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -51,36 +18,67 @@ const TakeAttendence = () => {
   } = useForm();
 
   const handleAddProduct = (data) => {
+    setLoading(true);
     let d = new Date();
     data.date = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
-    console.log(data);
+    data.classId = classId;
+    data.subjectId = subjectId;
+    data.classTitle = subject?.classTitle;
+    data.subjectTitle = subject?.subjectTitle;
+    data.teacherEmail = user?.email;
+
+    fetch(`${config.base_url}/attendence/create`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(false);
+        console.log(data);
+        if (!data?.success) {
+          throw new Error(data?.message);
+        }
+        toast.success(data?.message);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+        toast.error(err?.message || "Something went wrong");
+      });
   };
+
+  useEffect(() => {
+    fetch(`${config.base_url}/subject/${subjectId}/student`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setStudents(data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err?.message || "Something went wrong");
+      });
+  }, [subjectId]);
 
   return (
     <div className="space-y-5">
       <form onSubmit={handleSubmit(handleAddProduct)} className="space-y-5">
-        {/* <div className="form-control">
-          <label className="text-sm mb-2">Attendence: </label>
-          <input
-          {...register("recordDate", {required: "Provide a title",})}
-            type="date"
-            className="shadow bg-white focus:outline-none rounded p-2 border w-[300px]"
-          />
-        </div> */}
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-base">
             Record Today's Attendence:{" "}
           </h2>
           <Link
             to={`/dashboard/classes/${classId}/subject/${subjectId}/attendence-history`}
-            className="link btn btn-info text-white btn-sm"
+            className="btn btn-info text-white btn-sm"
           >
             Attendence History
           </Link>
         </div>
         <div className="overflow-x-auto">
           <table className="table">
-            {/* head */}
             <thead>
               <tr>
                 <th>Index</th>
@@ -94,16 +92,18 @@ const TakeAttendence = () => {
                 ? students?.map((str, i) => (
                     <tr key={i} str={str}>
                       <th>{i + 1}</th>
-                      <td>John Doe</td>
-                      <td>{str.studentEmail}</td>
+                      <td>{str?.firstName + " " + str?.lastName}</td>
+                      <td>{str?.email}</td>
                       <td>
                         <select
-                          {...register(str?.studentEmail, {
+                          {...register(str?._id, {
                             required: "Provide a title",
                           })}
                           className="shadow bg-white focus:outline-none rounded p-1 border"
                         >
-                          <option value="present">present</option>
+                          <option defaultChecked value="present">
+                            present
+                          </option>
                           <option value="absent">absent</option>
                         </select>
                       </td>
@@ -114,9 +114,15 @@ const TakeAttendence = () => {
           </table>
         </div>
         <div>
-          <button className="btn btn-sm btn-success text-white" type="submit">
-            Record Attendence
-          </button>
+          {loading ? (
+            <button disabled className="btn btn-sm btn-disabled text-white">
+              Recording...
+            </button>
+          ) : (
+            <button className="btn btn-sm btn-success text-white" type="submit">
+              Record Attendence
+            </button>
+          )}
         </div>
       </form>
     </div>

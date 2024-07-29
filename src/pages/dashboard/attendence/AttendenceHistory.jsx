@@ -11,33 +11,6 @@ const AttendenceHistory = () => {
       subjectTitle: "dsds",
       studentEmail: "student@gmail.com",
     },
-    {
-      _id: "2",
-      studentId: "s1",
-      classId: "c1",
-      subjectId: "s1",
-      classTitle: "dssd",
-      subjectTitle: "dsds",
-      studentEmail: "student@gmail.com",
-    },
-    {
-      _id: "3",
-      studentId: "s1",
-      classId: "c1",
-      subjectId: "s1",
-      classTitle: "dssd",
-      subjectTitle: "dsds",
-      studentEmail: "student@gmail.com",
-    },
-    {
-      _id: "4",
-      studentId: "s1",
-      classId: "c1",
-      subjectId: "s1",
-      classTitle: "dssd",
-      subjectTitle: "dsds",
-      studentEmail: "student@gmail.com",
-    },
   ]);
   return (
     <div className="space-y-5">
