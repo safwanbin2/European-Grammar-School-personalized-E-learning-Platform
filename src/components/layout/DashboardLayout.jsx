@@ -6,6 +6,8 @@ import { FaHome } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
+import { MdAddBusiness } from "react-icons/md";
+import { SiGoogleclassroom } from "react-icons/si";
 import { toast } from "sonner";
 import config from "../../config";
 
@@ -69,23 +71,25 @@ const DashboardLayout = () => {
             }`
           }
         >
-          <CgProfile className="flex-shrink-0 w-6 h-6  transition duration-75 group-hover:text-gray-900" />
+          <SiGoogleclassroom className="flex-shrink-0 w-6 h-6  transition duration-75 group-hover:text-gray-900" />
           <span className="flex-1 ml-3 whitespace-nowrap">Classes</span>
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/dashboard/add-new-class"
-          className={({ isActive, isPending }) =>
-            `flex items-center p-2 rounded-lg  border-b-2 border-transparent hover:bg-base-200 ${
-              isActive ? "bg-primary text-white" : ""
-            }`
-          }
-        >
-          <CgProfile className="flex-shrink-0 w-6 h-6  transition duration-75 group-hover:text-gray-900" />
-          <span className="flex-1 ml-3 whitespace-nowrap">Add Class</span>
-        </NavLink>
-      </li>
+      {userDB?.role === "admin" && (
+        <li>
+          <NavLink
+            to="/dashboard/add-new-class"
+            className={({ isActive, isPending }) =>
+              `flex items-center p-2 rounded-lg  border-b-2 border-transparent hover:bg-base-200 ${
+                isActive ? "bg-primary text-white" : ""
+              }`
+            }
+          >
+            <MdAddBusiness className="flex-shrink-0 w-6 h-6  transition duration-75 group-hover:text-gray-900" />
+            <span className="flex-1 ml-3 whitespace-nowrap">Add Class</span>
+          </NavLink>
+        </li>
+      )}
 
       {/* signing out */}
       <li>
@@ -118,7 +122,7 @@ const DashboardLayout = () => {
                 data-drawer-toggle="logo-sidebar"
                 aria-controls="logo-sidebar"
                 type="button"
-                className="p-2 text-gray-200 rounded-md outline-none "
+                className="p-2 text-black rounded-md outline-none "
               >
                 <span className="sr-only">Open sidebar</span>
                 {isOpen ? (

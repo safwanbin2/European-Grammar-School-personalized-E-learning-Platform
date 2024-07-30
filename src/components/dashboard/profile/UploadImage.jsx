@@ -78,13 +78,14 @@ const UploadImage = () => {
           className="inline-block p-2 rounded-full  border-4 border-base-100 bg-secondary hover:bg-primary transition-all duration-300 cursor-pointer absolute bottom-0 right-0"
         >
           <input
+            disabled
             id="fileInput"
             type="file"
             accept="image/x-png,image/gif,image/jpeg"
             className="hidden"
             onChange={handleImageChange}
           />
-          <FaCamera className="text-white" />
+          {/* <FaCamera className="text-white" /> */}
         </label>
       </div>
     </>

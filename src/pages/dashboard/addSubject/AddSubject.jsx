@@ -40,7 +40,7 @@ const AddSubject = () => {
             )}
           </div>
         </div>
-        <div className="form-control">
+        <div className="form-control w-full md:w-6/12">
           <label className="label ps-0">
             <span className="">Description</span>
           </label>

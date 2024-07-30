@@ -81,7 +81,7 @@ const SubmitClassWorkForm = ({ subject, refetch, setRefetch, classWork }) => {
 
   return (
     <form onSubmit={handleSubmit(handleAddProduct)} className="space-y-5">
-      <div className="form-control col-span-4">
+      <div className="form-control w-full md:w-6/12">
         <label className="text-sm mb-2">Text: </label>
         <textarea
           {...register("submissionText", {
@@ -97,7 +97,7 @@ const SubmitClassWorkForm = ({ subject, refetch, setRefetch, classWork }) => {
           </label>
         )}
       </div>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="form-control">
           <label className="text-sm mb-2">Attachment: </label>
           <input

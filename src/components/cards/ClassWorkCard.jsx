@@ -3,7 +3,7 @@ import { FaCloudDownloadAlt } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
 
-const ClassWorkCard = ({ classWork }) => {
+const ClassWorkCard = ({ classWork, membership }) => {
   const { subjectId, classId } = useParams();
   const {
     teacherEmail,
@@ -20,7 +20,7 @@ const ClassWorkCard = ({ classWork }) => {
   let subDate =
     sd.getDate() + "/" + (sd.getMonth() + 1) + "/" + sd.getFullYear();
   return (
-    <div className="w-full border-2 p-5 rounded flex justify-between">
+    <div className="w-full border-2 p-5 rounded flex flex-col md:flex-row gap-5 justify-between">
       <div className="space-y-5">
         <div className="flex gap-2">
           <div className="bg-base-200 rounded-full h-10 w-10 flex justify-center items-center">
@@ -47,20 +47,23 @@ const ClassWorkCard = ({ classWork }) => {
         )}
       </div>
       <div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2 md:gap-1">
           <label className="text-xs">*submit before {subDate}</label>
-          <Link
-            to={`/dashboard/classes/${classId}/subject/${subjectId}/class-work/${classWork?._id}/submit`}
-            className="btn btn-success btn-sm text-white"
-          >
-            Submit Answer
-          </Link>
-          <Link
-            to={`/dashboard/classes/${classId}/subject/${subjectId}/class-work/${classWork?._id}/view-submission`}
-            className="btn btn-info btn-sm text-white"
-          >
-            View Submission
-          </Link>
+          {membership?.role === "teacher" ? (
+            <Link
+              to={`/dashboard/classes/${classId}/subject/${subjectId}/class-work/${classWork?._id}/view-submission`}
+              className="btn btn-info btn-sm text-white"
+            >
+              View Submission
+            </Link>
+          ) : (
+            <Link
+              to={`/dashboard/classes/${classId}/subject/${subjectId}/class-work/${classWork?._id}/submit`}
+              className="btn btn-success btn-sm text-white"
+            >
+              View
+            </Link>
+          )}
         </div>
       </div>
     </div>

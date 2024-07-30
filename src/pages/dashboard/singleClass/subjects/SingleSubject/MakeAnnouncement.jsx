@@ -71,7 +71,7 @@ const MakeAnnouncement = ({ subject, setRefetch }) => {
 
   return (
     <form onSubmit={handleSubmit(handleAddMaterial)} className="space-y-5">
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
         <div className="form-control col-span-4">
           <textarea
             {...register("materialText", {

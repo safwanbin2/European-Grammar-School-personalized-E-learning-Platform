@@ -52,7 +52,7 @@ const SubmissionCard = ({ submission }) => {
   };
 
   return (
-    <div className="w-full border-2 p-5 rounded flex justify-between gap-10">
+    <div className="w-full border-2 p-5 rounded flex flex-col md:flex-row justify-between gap-5">
       <div className="space-y-5">
         <div className="flex gap-2">
           <div className="bg-base-200 rounded-full h-10 w-10 flex justify-center items-center">
