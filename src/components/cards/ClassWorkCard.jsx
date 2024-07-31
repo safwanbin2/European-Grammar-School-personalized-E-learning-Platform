@@ -36,10 +36,13 @@ const ClassWorkCard = ({ classWork, membership }) => {
           <div>
             <a
               href={instructionFile}
+              download="instructionFile.pdf"
               className="flex items-center gap-1 text-gray-500"
             >
-              <FaCloudDownloadAlt className="text-2xl" />
-              <p className="text-xs">attachment</p>
+              <button>
+                <FaCloudDownloadAlt className="text-2xl" />
+                <p className="text-xs">attachment</p>
+              </button>
             </a>
           </div>
         ) : (

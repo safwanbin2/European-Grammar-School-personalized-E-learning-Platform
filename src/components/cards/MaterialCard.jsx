@@ -1,5 +1,6 @@
 import { IoPerson } from "react-icons/io5";
 import { FaCloudDownloadAlt } from "react-icons/fa";
+import { saveAs } from "file-saver";
 
 const MaterialCard = ({ material }) => {
   const {
@@ -17,6 +18,10 @@ const MaterialCard = ({ material }) => {
   let d = new Date(date);
   let postDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
 
+  const handleDownloadPdf = () => {
+    saveAs(materialFile, "file");
+  };
+
   return (
     <div className="w-full border-2 p-5 rounded space-y-5">
       <div className="flex gap-2">
@@ -32,12 +37,14 @@ const MaterialCard = ({ material }) => {
       {materialFile ? (
         <div>
           <a
-            download={materialFile}
             href={materialFile}
+            download="materialFile.pdf"
             className="flex items-center gap-1 text-gray-500"
           >
-            <FaCloudDownloadAlt className="text-2xl" />
-            <p className="text-xs">attachment</p>
+            <button>
+              <FaCloudDownloadAlt className="text-2xl" />
+              <p className="text-xs">attachment</p>
+            </button>
           </a>
         </div>
       ) : (

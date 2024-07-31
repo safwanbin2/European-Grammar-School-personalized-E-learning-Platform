@@ -68,10 +68,13 @@ const SubmissionCard = ({ submission }) => {
           <div>
             <a
               href={submissionFile}
+              download="submissionFile.pdf"
               className="flex items-center gap-1 text-gray-500"
             >
-              <FaCloudDownloadAlt className="text-2xl" />
-              <p className="text-xs">attachment</p>
+              <button>
+                <FaCloudDownloadAlt className="text-2xl" />
+                <p className="text-xs">attachment</p>
+              </button>
             </a>
           </div>
         ) : (

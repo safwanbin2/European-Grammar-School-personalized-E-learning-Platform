@@ -21,6 +21,7 @@ import AcceptInvite from "../pages/invite/AcceptInvite";
 import Attendence from "../pages/dashboard/attendence/Attendence";
 import AttendenceHistory from "../pages/dashboard/attendence/AttendenceHistory";
 import Students from "../pages/dashboard/singleClass/subjects/SingleSubject/students/Students";
+import StudentReport from "../pages/dashboard/singleClass/subjects/SingleSubject/students/studentReport/StudentReport";
 
 export const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/classes/:classId/subject/:subjectId/students",
         element: <Students />,
+      },
+      {
+        path: "/dashboard/classes/:classId/subject/:subjectId/students/:studentEmail/report",
+        element: <StudentReport />,
       },
       {
         path: "/dashboard/classes/:classId/subject/:subjectId/class-work",

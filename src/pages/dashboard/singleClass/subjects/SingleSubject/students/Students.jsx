@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import config from "../../../../../../config";
 import { toast } from "sonner";
 
 const Students = () => {
-  const { subjectId } = useParams();
+  const { classId, subjectId } = useParams();
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -37,6 +37,7 @@ const Students = () => {
                 <th>Index</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>Report</th>
               </tr>
             </thead>
             <tbody>
@@ -46,6 +47,14 @@ const Students = () => {
                       <th>{i + 1}</th>
                       <td>{student?.email}</td>
                       <td>{student?.role}</td>
+                      <td>
+                        <Link
+                          to={`/dashboard/classes/${classId}/subject/${subjectId}/students/${student?.email}/report`}
+                          className="btn btn-sm"
+                        >
+                          View
+                        </Link>
+                      </td>
                     </tr>
                   ))
                 : ""}

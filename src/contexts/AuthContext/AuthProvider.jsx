@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import app from "../../firebase/firebase.init";
 import config from "../../config";
+import { toast } from "sonner";
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -77,6 +78,10 @@ const AuthProvider = ({ children }) => {
           console.log(data);
           setUserDB(data?.data);
           setIsLoading(false);
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          toast.error(err?.message || "authentication failed");
         });
     }
   }, [user, user?.email, refetchUserDB]);
