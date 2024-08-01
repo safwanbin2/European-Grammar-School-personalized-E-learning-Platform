@@ -19,7 +19,7 @@ const MaterialCard = ({ material }) => {
   let postDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
 
   const handleDownloadPdf = () => {
-    saveAs(materialFile, "file");
+    saveAs(materialFile, "material.pdf");
   };
 
   return (
@@ -36,16 +36,16 @@ const MaterialCard = ({ material }) => {
       {materialText ? <p className="text-sm">{materialText}</p> : ""}
       {materialFile ? (
         <div>
-          <a
+          {/* <a
             href={materialFile}
             download="materialFile.pdf"
-            className="flex items-center gap-1 text-gray-500"
+            className="flex items-center gap-1 flex-row text-gray-500"
           >
-            <button>
-              <FaCloudDownloadAlt className="text-2xl" />
-              <p className="text-xs">attachment</p>
-            </button>
-          </a>
+          </a> */}
+          <button onClick={handleDownloadPdf}>
+            <FaCloudDownloadAlt className="text-2xl" />
+            <p className="text-xs">attachment</p>
+          </button>
         </div>
       ) : (
         ""

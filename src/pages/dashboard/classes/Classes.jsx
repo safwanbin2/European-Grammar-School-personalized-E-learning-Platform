@@ -43,7 +43,7 @@ const Classes = () => {
       <div className="overflow-x-auto">
         {classLoading ? (
           <h2>Loading...</h2>
-        ) : (
+        ) : classes?.length ? (
           <table className="table">
             <thead>
               <tr>
@@ -80,6 +80,10 @@ const Classes = () => {
                 : ""}
             </tbody>
           </table>
+        ) : userDB?.role === "admin" ? (
+          ""
+        ) : (
+          <h2 className="mt-5">Ask teacher for invitation!</h2>
         )}
       </div>
       {userDB?.role === "admin" && (
