@@ -94,7 +94,7 @@ const SingleSubject = () => {
                 to={`/dashboard/classes/${classId}/subject/${subjectId}/class-work`}
                 className="btn btn-sm btn-success text-white"
               >
-                Class Work
+                Assignment
               </Link>
             </>
           ) : (
@@ -106,7 +106,7 @@ const SingleSubject = () => {
               to={`/dashboard/classes/${classId}/subject/${subjectId}/class-work`}
               className="btn btn-sm btn-success text-white"
             >
-              Class Work
+              Assignment
             </Link>
           ) : (
             ""

@@ -121,11 +121,11 @@ const AddClassWorkForm = ({ subject, setRefetch }) => {
               className="btn btn-sm btn-disabled text-white"
               type="submit"
             >
-              Add Class Work
+              Add assignment
             </button>
           ) : (
             <button className="btn btn-sm btn-success text-white" type="submit">
-              Add Class Work
+              Add assignment
             </button>
           )}
         </div>

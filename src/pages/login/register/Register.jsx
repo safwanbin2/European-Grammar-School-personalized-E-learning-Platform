@@ -209,7 +209,7 @@ const Register = () => {
               )}
             </div>
           </div>
-          {/* <div className="grid grid-cols-1 gap-2 mb-2">
+          <div className="grid grid-cols-1 gap-2 mb-2">
             <div className="form-control">
               <label className="label ps-0">
                 <span className="">Role</span>
@@ -229,7 +229,7 @@ const Register = () => {
                 </label>
               )}
             </div>
-          </div> */}
+          </div>
           <div className="text-center my-8">
             <button
               className="w-full px-20 py-[9px] bg-primary text-white rounded-3xl hover:shadow-lg"

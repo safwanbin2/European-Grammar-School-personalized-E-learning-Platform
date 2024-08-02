@@ -56,7 +56,7 @@ const ClassWork = () => {
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-base font-semibold">Class Work: </h2>
+        <h2 className="text-base font-semibold">Assignment: </h2>
       </div>
       {membership?.role === "teacher" ? (
         <AddClassWorkForm

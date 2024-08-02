@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import config from "../../../config";
 import { toast } from "sonner";
@@ -11,8 +11,10 @@ const AddClass = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const handleAddProduct = (data) => {
+  const handleAddClass = (data) => {
+    setLoading(true);
     fetch(`${config.base_url}/class/create`, {
       method: "POST",
       headers: {
@@ -26,20 +28,23 @@ const AddClass = () => {
         if (data?.success) {
           toast.success(data?.message);
           navigate("/dashboard/classes");
+          setLoading(false);
         } else {
           toast.error(data?.message);
+          setLoading(false);
         }
       })
       .catch((err) => {
         console.log(err);
         toast.error(err?.message);
+        setLoading(false);
       });
   };
 
   return (
     <div>
       <h2 className="text-base font-semibold my-6 text-grey">Add Class: </h2>
-      <form onSubmit={handleSubmit(handleAddProduct)} className="space-y-5">
+      <form onSubmit={handleSubmit(handleAddClass)} className="space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="form-control">
             <label className="label ps-0">
@@ -62,12 +67,21 @@ const AddClass = () => {
         </div>
 
         <div>
-          <button
-            className="btn btn-sm btn-success text-white me-4 rounded-3xl hover:shadow-lg"
-            type="submit"
-          >
-            Add Class
-          </button>
+          {loading ? (
+            <button
+              className="btn btn-sm btn-disabled text-white me-4 rounded-3xl hover:shadow-lg"
+              disabled
+            >
+              Adding Class
+            </button>
+          ) : (
+            <button
+              className="btn btn-sm btn-success text-white me-4 rounded-3xl hover:shadow-lg"
+              type="submit"
+            >
+              Add Class
+            </button>
+          )}
         </div>
       </form>
     </div>

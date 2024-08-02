@@ -31,8 +31,6 @@ const StudentReport = () => {
       });
   }, [classId, subjectId, studentEmail]);
 
-  console.log(report);
-
   if (loading) {
     return <h2>Loading...</h2>;
   }
@@ -74,7 +72,7 @@ const StudentReport = () => {
         )}
       </div>
       <div className="space-y-3">
-        <h2 className="font-semibold">Class Works Report:</h2>
+        <h2 className="font-semibold">Assignment Report:</h2>
         {report?.classWorks?.length ? (
           <ClassWorksReport classWorks={report?.classWorks} />
         ) : (
