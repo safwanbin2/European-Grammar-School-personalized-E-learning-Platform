@@ -26,8 +26,9 @@ const TeachersBanner = () => {
                 John Doe (Principle)
               </h3>
               <p>
-                Ei delenit sensibus liberavisse pri. Quod suscipit no nam. Est
-                in graece fuisset, eos affert putent doctus id.
+                “Education is not just about imparting knowledge; it’s about
+                inspiring curiosity and a lifelong love of learning. Together,
+                we can achieve greatness.”
               </p>
             </div>
           </div>

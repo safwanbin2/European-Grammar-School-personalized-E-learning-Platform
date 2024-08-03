@@ -3,6 +3,9 @@ import homeBanner from "../../../assets/homeBanner.png";
 import Footer from "../../shared/footer/Footer";
 import StudentsBanner from "./StudentsBanner";
 import TeachersBanner from "./TeachersBanner";
+import { IoMailOpenOutline } from "react-icons/io5";
+import { CiPhone } from "react-icons/ci";
+import { MdOutlineLocationOn } from "react-icons/md";
 
 const DashboardHome = () => {
   return (
@@ -19,20 +22,36 @@ const DashboardHome = () => {
         <div className="w-full text-6xl font-bold mt-12">
           <h1 className="w-full md:w-2/3">WHO ARE WE?</h1>
         </div>
-        <div className="flex mt-8 flex-col md:flex-row md:justify-between">
+        <div className="flex mt-8 flex-col md:flex-row md:justify-between gap-10 items-center">
           <p className="w-full md:w-2/3 text-gray-400">
             EGS is an English Medium School established in the year 2003.
             Presently the school is imparting education to students in EDEXCEL
-            and National Curriculumn (English Version).
+            and & Cambridge English version.
           </p>
           {/* <p className="w-full md:w-2/3 text-gray-400">
             Enhance your knowledge and learning abilities by utilizing EGSPEP
             (European Grammar School personalized E-learning Platform)
           </p> */}
-          <div className=" pt-6 md:pt-0">
-            <Link to={"/dashboard/classes"} className="p-btn">
+          <div className="pt-6 md:pt-0 flex flex-col gap-5">
+            {/* <Link to={"/dashboard/classes"} className="p-btn">
               View Classes
-            </Link>
+            </Link> */}
+            <div className="flex items-center gap-2">
+              <IoMailOpenOutline className="text-2xl text-primary" />
+              <p className="text-gray-500">
+                europeangrammarschool2063@gmail.com
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <CiPhone className="text-2xl text-primary" />
+              <p className="text-gray-500">+8801558129694</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <MdOutlineLocationOn className="text-3xl text-primary" />
+              <p className="text-gray-500">
+                House 45,Road no 4,O.R Nizam Road,Chittagong, Bangladesh
+              </p>
+            </div>
           </div>
         </div>
         <div className="flex flex-col">
