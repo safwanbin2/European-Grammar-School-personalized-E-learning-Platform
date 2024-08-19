@@ -1,4 +1,5 @@
 import React from "react";
+import safia from "../../../assets/safia.jpeg";
 
 const TeachersBanner = () => {
   return (
@@ -17,13 +18,13 @@ const TeachersBanner = () => {
             className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 bg-gray-50"
           >
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZX6pBHc0xp4t73Cnynv2eJSA0yL5fMUSkRA&s"
+              src={safia}
               alt=""
               className="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 bg-gray-500"
             />
             <div className="p-6 space-y-2 lg:col-span-5">
               <h3 className="text-2xl font-semibold sm:text-4xl">
-                John Doe (Principle)
+                Safia gazi (Principal)
               </h3>
               <p>
                 “Education is not just about imparting knowledge; it’s about

@@ -26,7 +26,10 @@ const DashboardHome = () => {
           <p className="w-full md:w-2/3 text-gray-400">
             EGS is an English Medium School established in the year 2003.
             Presently the school is imparting education to students in EDEXCEL
-            and & Cambridge English version.
+            and & Cambridge English version. E-learning promotes freedom,
+            flexibility and formative assessment. Digital learning creates
+            opportunities for personalized, self-paced, and anytime, anywhere
+            access to education.
           </p>
           {/* <p className="w-full md:w-2/3 text-gray-400">
             Enhance your knowledge and learning abilities by utilizing EGSPEP
